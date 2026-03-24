@@ -22,6 +22,7 @@ This project evolves across multiple sessions. At the start of each session:
 - [2026-03-22] Created `PROJECT-GUIDE.md` — a readable reference doc explaining every file in the project, data flow, and which files to edit for common changes. Must be kept up to date after logic/structural changes.
 - [2026-03-23] Added GitHub Repository Secrets section to `PROJECT-GUIDE.md` — documents all 12 secrets (5 backend: FIREBASE_SERVICE_ACCOUNT, GEMINI_API_KEY ×4; 7 frontend: VITE_FIREBASE_* ×6 + VITE_FIREBASE_VAPID_KEY). Secrets are injected via CI/CD, no local `.env` needed.
 - [2026-03-23] Fixed mobile card footer overlap in `CampaignCard.jsx` — AI summary pill now has `flexShrink: 0` + `whiteSpace: nowrap` to stay fixed-width pinned right; channel name gets `minWidth: 0` + `marginRight: 8` so it wraps instead of overlapping.
+- [2026-03-24] Added "Cron Job (External Workflow Trigger)" section to `PROJECT-GUIDE.md` — documents how the external cron job triggers `ingest-full.yml` via GitHub API, how to renew the fine-grained PAT when it expires (step-by-step), and a troubleshooting table for common errors (403/404/422).
 
 
 ## Known Pitfalls

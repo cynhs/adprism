@@ -170,6 +170,59 @@ All secrets are stored in **GitHub Settings → Secrets and variables → Action
 
 ---
 
+## Cron Job (External Workflow Trigger)
+
+The ingestion pipeline is triggered on a schedule by an **external cron job** (e.g., cron-job.org) that calls the GitHub API to dispatch a workflow.
+
+### How It Works
+
+The cron job sends a POST request to:
+```
+https://api.github.com/repos/ccy-hs/adprism/actions/workflows/ingest-full.yml/dispatches
+```
+
+With headers:
+```
+Authorization: Bearer <FINE_GRAINED_PAT>
+Accept: application/vnd.github+v3+json
+```
+
+And body:
+```json
+{"ref": "main"}
+```
+
+### How to Renew the Personal Access Token (PAT)
+
+Fine-grained PATs expire. When the cron job starts returning **403 Forbidden**, generate a new one:
+
+1. Go to **GitHub.com** → profile picture → **Settings**
+2. Scroll down left sidebar → **Developer settings**
+3. **Personal access tokens** → **Fine-grained tokens**
+4. Click **Generate new token**
+5. Fill in:
+   - **Token name**: e.g. `adprism-actions`
+   - **Expiration**: pick a duration (e.g. 90 days)
+   - **Repository access**: **Only select repositories** → choose `ccy-hs/adprism`
+6. Under **Permissions** → **Repository permissions**:
+   - **Actions**: **Read and write**
+   - **Contents**: **Read** (usually auto-selected)
+7. Click **Generate token** and **copy it immediately**
+8. Go to your cron job service, update the **Authorization** header value to:
+   ```
+   Bearer <your-new-token>
+   ```
+
+### Troubleshooting
+
+| Error | Cause | Fix |
+|-------|-------|-----|
+| 403 Forbidden | Token expired or missing permissions | Generate a new fine-grained PAT (steps above) |
+| 404 Not Found | Wrong workflow filename in the URL | Check `.github/workflows/` for the correct filename (`ingest-full.yml`, `ingest-test.yml`) |
+| 422 Unprocessable | Wrong `ref` value or missing body | Ensure body is `{"ref": "main"}` |
+
+---
+
 ## Key Things to Know When Requesting Changes
 
 - **To change how campaigns look**: edit `CampaignCard.jsx` (card layout, tags, breakdowns) or `tokens.css` (colours, design tokens)
