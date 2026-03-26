@@ -88,7 +88,10 @@ CAT2_CLIENT_INDUSTRY = {
     # KR - Automotive
     "현대자동차 (Hyundai Korea)":                      "UC_rBRrHKHnHkzgx8qIWwygg",
     "기아 (Kia Korea)":                               "UC6Im3VweLhYbiT2qYTIP6nw",
+    # TW - Automotive
+    "Porsche Taiwan":                               "@PorscheTW",
     # Global - Automotive
+    "Porsche":                                      "@Porsche",
     "Mercedes-Benz":                                "UClj0L8WZrVydk5xKOscI6-A",
     "BMW":                                          "UCYwrS5QvBY_JbSdbINLey6Q",
     "Volkswagen":                                   "UC0US_GEXVmwMH04OMcNuhpQ",
@@ -299,6 +302,8 @@ BRAND_INDUSTRY_MAP = {
     "日産自動車株式会社": "Automotive",
     "volvo cars taiwan": "Automotive",
     "volvo cars":       "Automotive",
+    "porsche taiwan":   "Automotive",
+    "porsche":          "Automotive",
     "kia taiwan":       "Automotive",
     "기아 (kia korea)":  "Automotive",
     # Travel
