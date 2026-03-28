@@ -118,7 +118,7 @@ def _get_gemini_clients():
     global _gemini_clients
     if not _gemini_clients:
         from google import genai
-        keys = [os.environ.get("GEMINI_API_KEY"), os.environ.get("GEMINI_API_KEY_2"), os.environ.get("GEMINI_API_KEY_3"), os.environ.get("GEMINI_API_KEY_4")]
+        keys = [os.environ.get("GEMINI_API_KEY_1"), os.environ.get("GEMINI_API_KEY_2"), os.environ.get("GEMINI_API_KEY_3"), os.environ.get("GEMINI_API_KEY_4")]
         _gemini_clients = [genai.Client(api_key=k) for k in keys if k]
     return _gemini_clients
 
