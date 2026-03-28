@@ -129,7 +129,7 @@ All secrets are stored in **GitHub Settings → Secrets and variables → Action
 | Secret | Where to find it |
 |--------|-----------------|
 | `FIREBASE_SERVICE_ACCOUNT` | Firebase Console → Project Settings → Service accounts → **Generate new private key** → copy the entire JSON file contents |
-| `GEMINI_API_KEY` (×4) | Google AI Studio → [aistudio.google.com/apikey](https://aistudio.google.com/apikey) → **Create API key** → copy the key string. Create 4 separate keys for `GEMINI_API_KEY_1`, `GEMINI_API_KEY_2`, `GEMINI_API_KEY_3`, `GEMINI_API_KEY_4` |
+| `GEMINI_API_KEY` (×5) | Google AI Studio → [aistudio.google.com/apikey](https://aistudio.google.com/apikey) → **Create API key** → copy the key string. Create 5 separate keys for `GEMINI_API_KEY_1`–`GEMINI_API_KEY_5` (key 5 is a fallback used only when the other 4 are rate-limited) |
 | `VITE_FIREBASE_API_KEY` | Firebase Console → Project Settings → General → Your apps → **Web app** → `apiKey` |
 | `VITE_FIREBASE_APP_ID` | Same location → `appId` |
 | `VITE_FIREBASE_AUTH_DOMAIN` | Same location → `authDomain` |
@@ -146,6 +146,7 @@ All secrets are stored in **GitHub Settings → Secrets and variables → Action
 | `GEMINI_API_KEY_2` | Gemini API key #2 — rotated via key pool in `claude.py` |
 | `GEMINI_API_KEY_3` | Gemini API key #3 — rotated via key pool in `claude.py` |
 | `GEMINI_API_KEY_4` | Gemini API key #4 — rotated via key pool in `claude.py` |
+| `GEMINI_API_KEY_5` | Gemini API key #5 — fallback only, used when all 4 primary keys are rate-limited |
 
 ### Frontend (React / Firebase Hosting)
 | Secret | Purpose |

@@ -123,6 +123,15 @@ def _get_gemini_clients():
     return _gemini_clients
 
 
+def _get_gemini_fallback_client():
+    """Return a fallback Gemini client using GEMINI_API_KEY_5, or None."""
+    key = os.environ.get("GEMINI_API_KEY_5")
+    if key:
+        from google import genai
+        return genai.Client(api_key=key)
+    return None
+
+
 def _call_claude(prompt):
     client = _get_claude_client()
     resp = client.messages.create(
@@ -165,6 +174,21 @@ def _call_gemini(prompt, image_data=None):
                 print(f"    ↻ Key {(start_idx + i) % len(clients) + 1} rate limited, trying next...")
                 continue
             raise
+    # Try fallback key (GEMINI_API_KEY_5) as last resort
+    fallback = _get_gemini_fallback_client()
+    if fallback:
+        try:
+            print("    ↻ All primary keys exhausted, trying fallback key 5...")
+            resp = fallback.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=contents,
+            )
+            return resp.text
+        except Exception as e:
+            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                pass
+            else:
+                raise
     raise Exception("All Gemini API keys exhausted (rate limited)")
 
 
