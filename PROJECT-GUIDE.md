@@ -118,7 +118,7 @@ All secrets are stored in **GitHub Settings → Secrets and variables → Action
 
 ### How to Add or Update a Secret
 
-1. Go to the repo on GitHub: `github.com/ccy-hs/adprism`
+1. Go to the repo on GitHub: `github.com/cynhs/adprism`
 2. Click **Settings** (top tab)
 3. Left sidebar → **Secrets and variables** → **Actions**
 4. To add a new secret: click **New repository secret**, enter the name and value, click **Add secret**
@@ -180,7 +180,7 @@ The ingestion pipeline is triggered on a schedule by an **external cron job** (e
 
 The cron job sends a POST request to:
 ```
-https://api.github.com/repos/ccy-hs/adprism/actions/workflows/ingest-cron.yml/dispatches
+https://api.github.com/repos/cynhs/adprism/actions/workflows/ingest-cron.yml/dispatches
 ```
 
 With headers:
@@ -205,7 +205,7 @@ Fine-grained PATs expire. When the cron job starts returning **403 Forbidden**, 
 5. Fill in:
    - **Token name**: e.g. `adprism-actions`
    - **Expiration**: pick a duration (e.g. 90 days)
-   - **Repository access**: **Only select repositories** → choose `ccy-hs/adprism`
+   - **Repository access**: **Only select repositories** → choose `cynhs/adprism`
 6. Under **Permissions** → **Repository permissions**:
    - **Actions**: **Read and write**
    - **Contents**: **Read** (usually auto-selected)
